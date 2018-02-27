@@ -32,9 +32,7 @@ int mat_zero(matrix **m, int rows, int cols);
 /* Creates a new matrix with same values as src. */
 int mat_dup(matrix **dst, const matrix *src);
 
-/* Copies src's values into dst.
- * Possible errors:
- *  - LAMAT_INCOMPATIBLE_DIM */
+/* Copies src's values and dimensions into dst. */
 int mat_cpy(matrix *dst, const matrix *src);
 
 /* Frees resources allocated for m */
