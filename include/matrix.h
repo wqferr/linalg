@@ -9,11 +9,12 @@
 
 /* Operation was not successful due to one or more of
  * the operands' dimensions */
-#define LAMAT_INVALID_DIM 1
+#define LAMAT_INCOMPATIBLE_DIM 1
 
 /* Operation was not successful due to one of the coordinates
  * being outside the bounds of a matrix. */
 #define LAMAT_OOB 2
+
 
 typedef struct matrix matrix;
 
@@ -28,10 +29,10 @@ int mat_id(matrix **m, int order);
 /* Creates a null matrix with the given dimensions. */
 int mat_zero(matrix **m, int rows, int cols);
 
-/* Creates a new matrix with same values as src */
+/* Creates a new matrix with same values as src. */
 int mat_dup(matrix **dst, const matrix *src);
 
-/* Copies src's values into dst 
+/* Copies src's values into dst.
  * Possible errors:
  *  - LAMAT_INCOMPATIBLE_DIM */
 int mat_cpy(matrix *dst, const matrix *src);
