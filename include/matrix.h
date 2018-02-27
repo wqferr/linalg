@@ -52,21 +52,19 @@ int mat_read(const matrix *m, int row, int col, LINALG_REAL *out);
 
 /* Alternative version of mat_read for easier handling.
  * Returns the element with corresponding position in the matrix.
- * If err is not NULL, it is set to the corresponding error, or 0 if none.
+ * No error or boundary checks are made. Useful for quick acces to values.
  */
-LINALG_REAL mat_get(const matrix *m, int row, int col, int *err);
+LINALG_REAL mat_get(const matrix *m, int row, int col);
 
-/* Equivalent to mat_set.
- * Writes r into the matrix's corresponding position.
+/* Writes r into the matrix's corresponding position.
  * Possible errors:
  *  - LAMAT_OOB */
 int mat_write(matrix *m, int row, int col, LINALG_REAL r);
 
-/* Equivalent to mat_write.
+/* Unsafe version of mat_write.
  * Writes r into the matrix's corresponding position.
- * Possible errors:
- *  - LAMAT_OOB */
-int mat_set(matrix *m, int row, int col, LINALG_REAL r);
+ * No error checks are made. */
+void mat_set(matrix *m, int row, int col, LINALG_REAL r);
 
 
 /* Writes the result of a + b into out.
