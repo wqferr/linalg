@@ -75,7 +75,7 @@ LIBS :=
 # Compile flags
 #
 
-C_FLAGS = -L$(LIB_DIR) -I$(INC_DIR) $(addprefix -l,$(LIBS))
+C_FLAGS = -Wall -L$(LIB_DIR) -I$(INC_DIR) $(addprefix -l,$(LIBS))
 
 
 #

@@ -63,7 +63,6 @@ int mat_id(matrix **out, int order) {
 
 int mat_zero(matrix **out, int rows, int cols) {
     int err;
-    int i;
     matrix *m;
 
     err = mat_new(&m, NULL, rows, cols);
@@ -107,6 +106,7 @@ int mat_cpy(matrix *dst, const matrix *src) {
 int mat_del(matrix *m) {
     free(m->data);
     free(m);
+    return 0;
 }
 
 
@@ -219,7 +219,6 @@ int mat_sub_(matrix *a, const matrix *b) {
 
 int mat_mul(const matrix *a, const matrix *b, matrix *out) {
     int i, j, k;
-    matrix *tmp;
     LINALG_REAL s;
 
     if (a->cols != b->rows) {
@@ -329,7 +328,7 @@ int mat_transpose(const matrix *m, matrix *out) {
     int err;
     matrix *tmp;
 
-    err = mat_cpy(tmp, m);
+    err = mat_dup(&tmp, m);
     if (err != 0) {
         return err;
     }
