@@ -92,6 +92,11 @@ int mat_sub_(matrix *a, const matrix *b);
  *  - LAMAT_INCOMPATIBLE_DIM */
 int mat_mul(const matrix *a, const matrix *b, matrix *out);
 
+/* Writes the result of a * b into a.
+ * Possible errors:
+ *  - LAMAT_INCOMPATIBLE_DIM */
+int mat_mul_(matrix *a, const matrix *b);
+
 /* Writes the result of s * m into out. */
 int mat_smul(const matrix *m, LINALG_REAL s, matrix *out);
 
