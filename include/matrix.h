@@ -28,7 +28,7 @@ int mat_new(matrix **m, const LINALG_REAL *data, int rows, int cols);
 int mat_alloc(matrix **m);
 
 /* Creates an identity matrix of the given order. */
-int mat_id(matrix **m, int order);
+int mat_identity(matrix **m, int order);
 
 /* Creates a null matrix with the given dimensions. */
 int mat_zero(matrix **m, int rows, int cols);
