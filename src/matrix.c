@@ -121,6 +121,18 @@ int mat_dim(const matrix *m, int *rows, int *cols) {
 }
 
 
+int mat_get_data(matrix *m, LINALG_REAL *out) {
+    memcpy(data, m->data, m->rows * m->cols * sizeof(*data));
+    return 0;
+}
+
+
+int mat_set_data(matrix *m, LINALG_REAL *data) {
+    memcpy(m->data, data, m->rows * m->cols * sizeof(*data));
+    return 0;
+}
+
+
 int mat_read(const matrix *m, int row, int col, LINALG_REAL *out) {
     if (row < 0 || row >= m->rows
             || col < 0 || col >= m->cols) {

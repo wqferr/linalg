@@ -42,9 +42,16 @@ int mat_cpy(matrix *dst, const matrix *src);
 /* Frees resources allocated for m */
 int mat_del(matrix *m);
 
+
 /* Writes to *rows and *cols the dimensions of m.
  * If any of the int pointers are NULL, it is left untouched. */
 int mat_dim(const matrix *m, int *rows, int *cols);
+
+/* Copies m's elements into data. */
+int mat_get_data(matrix *m, LINALG_REAL *data);
+
+/* Copies data's elements into m. */
+int mat_set_data(matrix *m, LINALG_REAL *data);
 
 
 /* Writes the element with corresponding position into out.
