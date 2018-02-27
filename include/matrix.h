@@ -23,6 +23,10 @@ typedef struct matrix matrix;
  * If data is NULL, the new matrix's elements are undefined. */
 int mat_new(matrix **m, const LINALG_REAL *data, int rows, int cols);
 
+/* Allocates a matrix in an invalid state.
+ * Matrices created by this function can be used for function output. */
+int mat_alloc(matrix **m);
+
 /* Creates an identity matrix of the given order. */
 int mat_id(matrix **m, int order);
 
@@ -100,6 +104,12 @@ int mat_smul(const matrix *m, LINALG_REAL s, matrix *out);
 
 /* Writes the result of s * m into m. */
 int mat_smul_(matrix *m, LINALG_REAL s);
+
+/* Writes the result of (1/s) * m into out. */
+int mat_sdiv(const matrix *m, LINALG_REAL s, matrix *out);
+
+/* Writes the result of (1/s) * m into m. */
+int mat_sdiv_(matrix *m, LINALG_REAL s);
 
 
 /* Transposes m. */
