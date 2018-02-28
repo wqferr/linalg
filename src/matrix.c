@@ -122,7 +122,7 @@ int mat_dim(const matrix *m, int *rows, int *cols) {
 
 
 int mat_get_data(matrix *m, LINALG_REAL *out) {
-    memcpy(data, m->data, m->rows * m->cols * sizeof(*data));
+    memcpy(out, m->data, m->rows * m->cols * sizeof(*out));
     return 0;
 }
 
