@@ -121,11 +121,11 @@ int vec_mmul_l_(vector *v, const matrix *m);
 /* Writes the result of m * v into out.
  * Possible errors:
  *  - LAVEC_INCOMPATIBLE_DIM */
-int vec_mmul_r(const vector *v, const matrix *m, vector *out);
+int vec_mmul_r(const matrix *m, const vector *v, vector *out);
 
 /* Writes the result of m * v into v.
  * Possible errors:
  *  - LAVEC_INCOMPATIBLE_DIM */
-int vec_mmul_r_(vector *v, const matrix *m);
+int vec_mmul_r_(const matrix *m, vector *v);
 
 #endif

@@ -336,7 +336,7 @@ int vec_mmul_l_(vector *v, const matrix *m) {
 }
 
 
-int vec_mmul_r(const vector *v, const matrix *m, vector *out) {
+int vec_mmul_r(const matrix *m, const vector *v, vector *out) {
     int err;
     vector *tmp;
 
@@ -345,7 +345,7 @@ int vec_mmul_r(const vector *v, const matrix *m, vector *out) {
         return err;
     }
 
-    err = vec_mmul_r_(tmp, m);
+    err = vec_mmul_r_(m, tmp);
     if (err != 0) {
         vec_del(tmp);
         return err;
@@ -357,7 +357,7 @@ int vec_mmul_r(const vector *v, const matrix *m, vector *out) {
 }
 
 
-int vec_mmul_r_(vector *v, const matrix *m) {
+int vec_mmul_r_(const matrix *m, vector *v) {
     int i, j, mrows, mcols;
     int err;
     LINALG_SCALAR s;

@@ -33,29 +33,29 @@ int main(void) {
     LINALG_SCALAR ma[] = {
         1, 2, 3,
         4, 5, 6};
-    LINALG_SCALAR vb[] = {1, 1, 1};
-    LINALG_SCALAR vc[] = {1, 2};
+    LINALG_SCALAR va[] = {1, 1, 1};
+    LINALG_SCALAR vb[] = {1, 2};
 
     LINALG_SCALAR res;
-    matrix *a;
+    matrix *m;
+    vector *a;
     vector *b;
-    vector *c;
     vector *x;
 
-    mat_new(&a, ma, 2, 3);
-    vec_new(&b, vb, 3);
-    vec_new(&c, vc, 2);
+    mat_new(&m, ma, 2, 3);
+    vec_new(&a, va, 3);
+    vec_new(&b, vb, 2);
     vec_alloc(&x);
 
-    printf("%d\n", vec_mmul_r_(b, a));
-    printf("%d\n", vec_dot(b, c, &res));
-    printf("%d\n", vec_smul(c, res, x));
+    printf("%d\n", vec_mmul_r_(m, a));
+    printf("%d\n", vec_dot(a, b, &res));
+    printf("%d\n", vec_smul(b, res, x));
     printf("%f\n", res);
     vec_print(x);
 
-    mat_del(a);
+    mat_del(m);
+    vec_del(a);
     vec_del(b);
-    vec_del(c);
     vec_del(x);
     return 0;
 }
