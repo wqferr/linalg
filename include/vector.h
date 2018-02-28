@@ -46,7 +46,7 @@ int vec_del(vector *v);
 int vec_dim(const vector *v, int *dim);
 
 /* Copies v's elements into data. */
-int vec_get_data(vector *v, LINALG_SCALAR *data);
+int vec_get_data(const vector *v, LINALG_SCALAR *data);
 
 /* Copies data's elements into v. */
 int vec_set_data(vector *v, const LINALG_SCALAR *data);

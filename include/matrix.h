@@ -46,7 +46,7 @@ int mat_del(matrix *m);
 int mat_dim(const matrix *m, int *rows, int *cols);
 
 /* Copies m's elements into data. */
-int mat_get_data(matrix *m, LINALG_SCALAR *data);
+int mat_get_data(const matrix *m, LINALG_SCALAR *data);
 
 /* Copies data's elements into m. */
 int mat_set_data(matrix *m, const LINALG_SCALAR *data);

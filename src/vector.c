@@ -100,7 +100,7 @@ int vec_dim(const vector *v, int *dim) {
 }
 
 
-int vec_get_data(vector *v, LINALG_SCALAR *data) {
+int vec_get_data(const vector *v, LINALG_SCALAR *data) {
     memcpy(data, v->data, v->dim * sizeof(*v->data));
     return 0;
 }

@@ -121,7 +121,7 @@ int mat_dim(const matrix *m, int *rows, int *cols) {
 }
 
 
-int mat_get_data(matrix *m, LINALG_SCALAR *out) {
+int mat_get_data(const matrix *m, LINALG_SCALAR *out) {
     memcpy(out, m->data, m->rows * m->cols * sizeof(*out));
     return 0;
 }
