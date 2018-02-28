@@ -1,7 +1,11 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
+typedef struct matrix matrix;
+
+
 #include "linalg.h"
+#include "vector.h"
 
 /* Operation was not successful due to one or more of
  * the operands' dimensions */
@@ -11,8 +15,6 @@
  * being outside the bounds of a matrix. */
 #define LAMAT_OOB 2
 
-
-typedef struct matrix matrix;
 
 /* Creates a new matrix whose elements are in data,
  * ordered by rows.
@@ -101,6 +103,26 @@ int mat_mul(const matrix *a, const matrix *b, matrix *out);
  * Possible errors:
  *  - LAMAT_INCOMPATIBLE_DIM */
 int mat_mul_(matrix *a, const matrix *b);
+
+/* Element-wise multiplication of v with every row of m.
+ * Possible errors:
+ *  - LAMAT_INCOMPATIBLE_DIM */
+int mat_rmul(const matrix *m, const vector *v, matrix *out);
+
+/* Element-wise in place multiplication of v with every row of m.
+ * Possible errors:
+ *  - LAMAT_INCOMPATIBLE_DIM */
+int mat_rmul_(matrix *m, const vector *v);
+
+/* Element-wise multiplication of v with every column of m.
+ * Possible errors:
+ *  - LAMAT_INCOMPATIBLE_DIM */
+int mat_cmul(const matrix *m, const vector *v, matrix *out);
+
+/* Element-wise in place multiplication of v with every column of m.
+ * Possible errors:
+ *  - LAMAT_INCOMPATIBLE_DIM */
+int mat_cmul_(matrix *m, const vector *v);
 
 /* Writes the result of s * m into out. */
 int mat_smul(const matrix *m, LINALG_SCALAR s, matrix *out);

@@ -275,6 +275,84 @@ int mat_mul_(matrix *a, const matrix *b) {
 }
 
 
+int mat_rmul(const matrix *m, const vector *v, matrix *out) {
+    int err;
+    matrix *tmp;
+
+    err = mat_dup(&tmp, m);
+    if (err != 0) {
+        return err;
+    }
+    err = mat_rmul_(tmp, v);
+    if (err != 0) {
+        mat_del(tmp);
+        return err;
+    }
+    err = mat_cpy(out, tmp);
+    mat_del(tmp);
+    return err;
+}
+
+
+int mat_rmul_(matrix *m, const vector *v) {
+    int i, j, vdim;
+    LINALG_SCALAR r;
+
+    vec_dim(v, &vdim);
+    if (vdim != m->cols) {
+        return LAMAT_INCOMPATIBLE_DIM;
+    }
+
+    for (i = 0; i < m->rows; i++) {
+        for (j = 0; j < m->cols; j++) {
+            r = mat_get(m, i, j) * vec_get(v, j);
+            mat_set(m, i, j, r);
+        }
+    }
+
+    return 0;
+}
+
+
+int mat_cmul(const matrix *m, const vector *v, matrix *out) {
+    int err;
+    matrix *tmp;
+
+    err = mat_dup(&tmp, m);
+    if (err != 0) {
+        return err;
+    }
+    err = mat_cmul_(tmp, v);
+    if (err != 0) {
+        mat_del(tmp);
+        return err;
+    }
+    err = mat_cpy(out, tmp);
+    mat_del(tmp);
+    return err;
+}
+
+
+int mat_cmul_(matrix *m, const vector *v) {
+    int i, j, vdim;
+    LINALG_SCALAR r;
+
+    vec_dim(v, &vdim);
+    if (vdim != m->rows) {
+        return LAMAT_INCOMPATIBLE_DIM;
+    }
+
+    for (i = 0; i < m->cols; i++) {
+        for (j = 0; j < m->rows; j++) {
+            r = mat_get(m, j, i) * vec_get(v, j);
+            mat_set(m, j, i, r);
+        }
+    }
+
+    return 0;
+}
+
+
 int mat_smul(const matrix *m, LINALG_SCALAR s, matrix *out) {
     int err;
     matrix *tmp;

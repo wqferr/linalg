@@ -1,6 +1,9 @@
 #ifndef VECTOR_H
 #define VECTOR_H 1
 
+typedef struct vector vector;
+
+
 #include "linalg.h"
 #include "matrix.h"
 
@@ -12,8 +15,6 @@
  * being outside the bounds of a vector. */
 #define LAVEC_OOB 2
 
-
-typedef struct vector vector;
 
 /* Creates a new vector.
  * Vectors differ from matrices in that vectors try to adapt
@@ -107,6 +108,16 @@ int vec_sdiv(const vector *v, LINALG_SCALAR r, vector *out);
 
 /* Scales v by 1/r and writes back to v. */
 int vec_sdiv_(vector *v, LINALG_SCALAR r);
+
+/* Element-wise multiplication of a and b.
+ * Possible errors:
+ *  - LAVEC_INCOMPATIBLE_DIM */
+int vec_emul(const vector *a, const vector *b, vector *out);
+
+/* In place element-wise multiplication of a and b.
+ * Possible errors:
+ *  - LAVEC_INCOMPATIBLE_DIM */
+int vec_emul_(vector *a, const vector *b);
 
 /* Writes the result of v * m into out.
  * Possible errors:
