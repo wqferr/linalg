@@ -47,7 +47,7 @@ int mat_dim(const matrix *m, int *rows, int *cols);
 int mat_get_data(matrix *m, LINALG_REAL *data);
 
 /* Copies data's elements into m. */
-int mat_set_data(matrix *m, LINALG_REAL *data);
+int mat_set_data(matrix *m, const LINALG_REAL *data);
 
 
 /* Writes the element with corresponding position into out.

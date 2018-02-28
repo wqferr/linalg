@@ -127,7 +127,7 @@ int mat_get_data(matrix *m, LINALG_REAL *out) {
 }
 
 
-int mat_set_data(matrix *m, LINALG_REAL *data) {
+int mat_set_data(matrix *m, const LINALG_REAL *data) {
     memcpy(m->data, data, m->rows * m->cols * sizeof(*data));
     return 0;
 }
