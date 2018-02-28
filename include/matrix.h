@@ -1,11 +1,7 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
-/*
- * In-place operations are marked with a trailing underscore.
- */
-
-#define LINALG_REAL float
+#include "linalg.h"
 
 /* Operation was not successful due to one or more of
  * the operands' dimensions */
