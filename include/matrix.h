@@ -17,7 +17,7 @@ typedef struct matrix matrix;
 /* Creates a new matrix whose elements are in data,
  * ordered by rows.
  * If data is NULL, the new matrix's elements are undefined. */
-int mat_new(matrix **m, const LINALG_REAL *data, int rows, int cols);
+int mat_new(matrix **m, const LINALG_SCALAR *data, int rows, int cols);
 
 /* Allocates a matrix in an invalid state.
  * Matrices created by this function can be used for function output. */
@@ -44,32 +44,32 @@ int mat_del(matrix *m);
 int mat_dim(const matrix *m, int *rows, int *cols);
 
 /* Copies m's elements into data. */
-int mat_get_data(matrix *m, LINALG_REAL *data);
+int mat_get_data(matrix *m, LINALG_SCALAR *data);
 
 /* Copies data's elements into m. */
-int mat_set_data(matrix *m, const LINALG_REAL *data);
+int mat_set_data(matrix *m, const LINALG_SCALAR *data);
 
 
 /* Writes the element with corresponding position into out.
  * Possible errors:
  *  - LAMAT_OOB */
-int mat_read(const matrix *m, int row, int col, LINALG_REAL *out);
+int mat_read(const matrix *m, int row, int col, LINALG_SCALAR *out);
 
 /* Alternative version of mat_read for easier handling.
  * Returns the element with corresponding position in the matrix.
  * No error or boundary checks are made. Useful for quick acces to values.
  */
-LINALG_REAL mat_get(const matrix *m, int row, int col);
+LINALG_SCALAR mat_get(const matrix *m, int row, int col);
 
 /* Writes r into the matrix's corresponding position.
  * Possible errors:
  *  - LAMAT_OOB */
-int mat_write(matrix *m, int row, int col, LINALG_REAL r);
+int mat_write(matrix *m, int row, int col, LINALG_SCALAR r);
 
 /* Unsafe version of mat_write.
  * Writes r into the matrix's corresponding position.
  * No error checks are made. */
-void mat_set(matrix *m, int row, int col, LINALG_REAL r);
+void mat_set(matrix *m, int row, int col, LINALG_SCALAR r);
 
 
 /* Writes the result of a + b into out.
@@ -103,16 +103,16 @@ int mat_mul(const matrix *a, const matrix *b, matrix *out);
 int mat_mul_(matrix *a, const matrix *b);
 
 /* Writes the result of s * m into out. */
-int mat_smul(const matrix *m, LINALG_REAL s, matrix *out);
+int mat_smul(const matrix *m, LINALG_SCALAR s, matrix *out);
 
 /* Writes the result of s * m into m. */
-int mat_smul_(matrix *m, LINALG_REAL s);
+int mat_smul_(matrix *m, LINALG_SCALAR s);
 
 /* Writes the result of (1/s) * m into out. */
-int mat_sdiv(const matrix *m, LINALG_REAL s, matrix *out);
+int mat_sdiv(const matrix *m, LINALG_SCALAR s, matrix *out);
 
 /* Writes the result of (1/s) * m into m. */
-int mat_sdiv_(matrix *m, LINALG_REAL s);
+int mat_sdiv_(matrix *m, LINALG_SCALAR s);
 
 
 /* Transposes m. */

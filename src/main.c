@@ -18,10 +18,10 @@ void mat_print(const matrix *m) {
 
 
 int main(void) {
-    LINALG_REAL ma[] = {
+    LINALG_SCALAR ma[] = {
         1, 2, 3,
         4, 5, 6};
-    LINALG_REAL mb[] = {
+    LINALG_SCALAR mb[] = {
         1, 1,
         1, 1,
         1, 1};

@@ -4,13 +4,13 @@
 #include <string.h>
 
 struct matrix {
-    LINALG_REAL *data;
+    LINALG_SCALAR *data;
     int rows;
     int cols;
 };
 
 
-int mat_new(matrix **out, const LINALG_REAL *data, int rows, int cols) {
+int mat_new(matrix **out, const LINALG_SCALAR *data, int rows, int cols) {
     int bytelen = rows * cols * sizeof(*data);
 
     matrix *m = malloc(sizeof(*m));
@@ -121,19 +121,19 @@ int mat_dim(const matrix *m, int *rows, int *cols) {
 }
 
 
-int mat_get_data(matrix *m, LINALG_REAL *out) {
+int mat_get_data(matrix *m, LINALG_SCALAR *out) {
     memcpy(out, m->data, m->rows * m->cols * sizeof(*out));
     return 0;
 }
 
 
-int mat_set_data(matrix *m, const LINALG_REAL *data) {
+int mat_set_data(matrix *m, const LINALG_SCALAR *data) {
     memcpy(m->data, data, m->rows * m->cols * sizeof(*data));
     return 0;
 }
 
 
-int mat_read(const matrix *m, int row, int col, LINALG_REAL *out) {
+int mat_read(const matrix *m, int row, int col, LINALG_SCALAR *out) {
     if (row < 0 || row >= m->rows
             || col < 0 || col >= m->cols) {
         return LAMAT_OOB;
@@ -143,12 +143,12 @@ int mat_read(const matrix *m, int row, int col, LINALG_REAL *out) {
 }
 
 
-LINALG_REAL mat_get(const matrix *m, int row, int col) {
+LINALG_SCALAR mat_get(const matrix *m, int row, int col) {
     return m->data[row*m->cols + col];
 }
 
 
-int mat_write(matrix *m, int row, int col, LINALG_REAL r) {
+int mat_write(matrix *m, int row, int col, LINALG_SCALAR r) {
     if (row < 0 || row >= m->rows
             || col < 0 || col >= m->cols) {
         return LAMAT_OOB;
@@ -158,7 +158,7 @@ int mat_write(matrix *m, int row, int col, LINALG_REAL r) {
 }
 
 
-void mat_set(matrix *m, int row, int col, LINALG_REAL r) {
+void mat_set(matrix *m, int row, int col, LINALG_SCALAR r) {
     m->data[row*m->cols + col] = r;
 }
 
@@ -231,7 +231,7 @@ int mat_sub_(matrix *a, const matrix *b) {
 
 int mat_mul(const matrix *a, const matrix *b, matrix *out) {
     int i, j, k;
-    LINALG_REAL s;
+    LINALG_SCALAR s;
 
     if (a->cols != b->rows) {
         return LAMAT_INCOMPATIBLE_DIM;
@@ -275,7 +275,7 @@ int mat_mul_(matrix *a, const matrix *b) {
 }
 
 
-int mat_smul(const matrix *m, LINALG_REAL s, matrix *out) {
+int mat_smul(const matrix *m, LINALG_SCALAR s, matrix *out) {
     int err;
     matrix *tmp;
     err = mat_dup(&tmp, m);
@@ -294,7 +294,7 @@ int mat_smul(const matrix *m, LINALG_REAL s, matrix *out) {
 }
 
 
-int mat_smul_(matrix *m, LINALG_REAL s) {
+int mat_smul_(matrix *m, LINALG_SCALAR s) {
     int i, len;
 
     len = m->rows * m->cols;
@@ -305,7 +305,7 @@ int mat_smul_(matrix *m, LINALG_REAL s) {
 }
 
 
-int mat_sdiv(const matrix *m, LINALG_REAL s, matrix *out) {
+int mat_sdiv(const matrix *m, LINALG_SCALAR s, matrix *out) {
     int err;
     matrix *tmp;
 
@@ -325,7 +325,7 @@ int mat_sdiv(const matrix *m, LINALG_REAL s, matrix *out) {
 }
 
 
-int mat_sdiv_(matrix *m, LINALG_REAL s) {
+int mat_sdiv_(matrix *m, LINALG_SCALAR s) {
     int i, len;
 
     len = m->rows * m->cols;
