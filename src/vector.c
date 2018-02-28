@@ -1,5 +1,6 @@
 #include "vector.h"
 
+#include <math.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -96,6 +97,66 @@ int vec_del(vector *v) {
 
 int vec_dim(const vector *v, int *dim) {
     *dim = v->dim;
+    return 0;
+}
+
+
+int vec_norm(const vector *v, LINALG_SCALAR *out) {
+    int err;
+    LINALG_SCALAR norm;
+    err = vec_norm2(v, &norm);
+    if (err != 0) {
+        return err;
+    }
+    *out = sqrt(norm);
+    return 0;
+}
+
+
+int vec_norm2(const vector *v, LINALG_SCALAR *out) {
+    LINALG_SCALAR norm2;
+    LINALG_SCALAR x;
+    int i;
+
+    norm2 = 0;
+    for (i = 0; i < v->dim; i++) {
+        x = vec_get(v, i);
+        norm2 += x*x;
+    }
+
+    *out = norm2;
+    return 0;
+}
+
+
+int vec_dist(const vector *a, const vector *b, LINALG_SCALAR *out) {
+    int err;
+    LINALG_SCALAR dist;
+    err = vec_dist2(a, b, &dist);
+    if (err != 0) {
+        return err;
+    }
+    *out = sqrt(dist);
+    return 0;
+}
+
+
+int vec_dist2(const vector *a, const vector *b, LINALG_SCALAR *out) {
+    LINALG_SCALAR dist2;
+    LINALG_SCALAR x;
+    int i;
+
+    if (a->dim != b->dim) {
+        return LAVEC_INCOMPATIBLE_DIM;
+    }
+
+    dist2 = 0;
+    for (i = 0; i < a->dim; i++) {
+        x = vec_get(a, i) - vec_get(b, i);
+        dist2 += x*x;
+    }
+
+    *out = dist2;
     return 0;
 }
 

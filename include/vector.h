@@ -51,6 +51,22 @@ int vec_get_data(const vector *v, LINALG_SCALAR *data);
 /* Copies data's elements into v. */
 int vec_set_data(vector *v, const LINALG_SCALAR *data);
 
+/* Writes v's norm into *out. */
+int vec_norm(const vector *v, LINALG_SCALAR *out);
+
+/* Writes v's squared norm into *out. */
+int vec_norm2(const vector *v, LINALG_SCALAR *out);
+
+/* Writes the norm of a - b into *out.
+ * Possible errors:
+ *  - LAVEC_INCOMPATIBLE_DIM */
+int vec_dist(const vector *a, const vector *b, LINALG_SCALAR *out);
+
+/* Writes the squared norm of a - b into *out.
+ * Possible errors:
+ *  - LAVEC_INCOMPATIBLE_DIM */
+int vec_dist2(const vector *a, const vector *b, LINALG_SCALAR *out);
+
 
 /* Writes the element with corresponding position into out.
  * Possible errors:
