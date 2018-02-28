@@ -2,6 +2,7 @@
 #define VECTOR_H 1
 
 #include "linalg.h"
+#include "matrix.h"
 
 /* Operation was not successful due to one or more of
  * the operands' dimensions */
@@ -16,7 +17,8 @@ typedef struct vector vector;
 
 /* Creates a new vector.
  * Vectors differ from matrices in that vectors try to adapt
- * to either a row or column vector, depending on the operation. */
+ * to either a row or column vector, depending on the operation.
+ * If data is NULL, the initial elements of v are undefined. */
 int vec_new(vector **v, LINALG_REAL *data, int dim);
 
 /* Allocates a vector in an invalid state.
@@ -46,7 +48,7 @@ int vec_dim(const vector *v, int *dim);
 int vec_get_data(vector *v, LINALG_REAL *data);
 
 /* Copies data's elements into v. */
-int vec_set_data(vector *v, LINALG_REAL *data);
+int vec_set_data(vector *v, const LINALG_REAL *data);
 
 
 /* Writes the element with corresponding position into out.
@@ -66,9 +68,7 @@ int vec_write(vector *v, int i, LINALG_REAL r);
 
 /* Unsafe version of mat_write.
  * Writes r into the matrix's corresponding position.
- * No error checks are made.
- * Possible Errors:
- *  - LAVEC_OOB */
+ * No error checks are made. */
 void vec_set(vector *v, int i, LINALG_REAL r);
 
 /* Writes the result of a + b into out.
